@@ -18,4 +18,5 @@
   if no specific kilometer distance from the primary location is given [CHAR LIMIT=30] -->
     <string name="near_the">Near the</string>
     <string name="app_name">Quake Report</string>
+    <string name="no_earthquakes">No Earthquakes found</string>
 </resources>
