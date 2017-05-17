@@ -44,6 +44,12 @@ public final class QueryUtils {
     }
 // returning one earthquake to update list
     public static List<Earthquake_info> fetchEarthquakedata(String requestUrl){
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
         URL url = createUrl(requestUrl);
         String jsonResponse = null;
         try
@@ -124,6 +130,7 @@ public final class QueryUtils {
      * parsing a JSON response.
      */
     public static List<Earthquake_info> extractEarthquakes(String earthquakeJSON) {
+
 
         // If the JSON string is empty or null, then return early.
         if (TextUtils.isEmpty(earthquakeJSON)) {

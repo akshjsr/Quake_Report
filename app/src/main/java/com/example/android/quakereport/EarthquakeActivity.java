@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 import android.net.Uri;
 import android.content.Intent;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
@@ -39,6 +40,7 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
     private static final int EARTHQUAKE_LOADER_ID = 1;
     private EarthquakeAdapter mAdapter;
     private TextView empty_state;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,15 +102,23 @@ public class EarthquakeActivity extends AppCompatActivity implements LoaderManag
     public void onLoadFinished(Loader<List<Earthquake_info>> loader, List<Earthquake_info> earthquakes) {
         Log.e(LOG_TAG,"Loader has finished loading .");
         // Clear the adapter of previous earthquake data
-        empty_state.setText(R.string.no_earthquakes);
+
         mAdapter.clear();
+        View loadingbar=(ProgressBar) findViewById(R.id.loadingbar);
+        loadingbar.setVisibility(View.GONE);
         // If there is a valid list of {@link Earthquake}s, then add them to the adapter's
         // data set. This will trigger the ListView to update.
         if (earthquakes != null && !earthquakes.isEmpty()) {
+
+            //hided the progressbar on successful load of list
+               View loadingindicator=(ProgressBar) findViewById(R.id.loadingbar);
+               loadingindicator.setVisibility(View.GONE);
             Log.e(LOG_TAG,"Earthquakes are added to list from loader");
             mAdapter.addAll(earthquakes);
         }
+        empty_state.setText(R.string.no_earthquakes);
     }
+
 
 
 
